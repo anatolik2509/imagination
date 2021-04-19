@@ -11,6 +11,5 @@ public class Image {
     private User author;
     private String storagePath;
     @ManyToOne
-    @Column(nullable = false)
     private Image parent;
 }
