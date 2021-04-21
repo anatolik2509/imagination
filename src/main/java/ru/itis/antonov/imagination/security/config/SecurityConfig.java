@@ -50,6 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .rememberMeParameter("remember-me")
                 .tokenRepository(persistentTokenRepository())
                 .and()
+                .authorizeRequests()
+                .antMatchers("/static")
+                .permitAll()
+                .and()
                 .csrf().disable();
         //TODO csrf
     }
