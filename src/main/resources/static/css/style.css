@@ -2,32 +2,31 @@
     font-family: 'Nunito', sans-serif;
 }
 
-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: baseline;
-    align-items: center;
-    height: 120px;
+.main-color-bg{
     background-color: #5CDB95;
-    padding: 0 50px;
 }
 
-.logo{
-    font-size: 64px;
-    font-weight: bolder;
-    color: #05386B;
-
+.second-color-bg{
+    background-color: #379683;
 }
 
-.header-menu{
+.third-color-bg{
+    background-color: #05386B;
+}
+
+.center-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
-.header-menu-element{
-    color: #EDF5E1;
-    font-size: 48px;
-    font-weight: bold;
-    margin-left: 30px;
+.default-body{
+    width: 100%;
+    min-height: 100%;
+    padding-top: 120px;
 }
+
+
+

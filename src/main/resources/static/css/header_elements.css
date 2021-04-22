@@ -1,0 +1,43 @@
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: baseline;
+    align-items: center;
+    height: 120px;
+    width: 100%;
+    background-color: #5CDB95;
+    padding: 0 50px;
+    position: fixed;
+}
+
+.logo{
+    font-size: 64px;
+    font-weight: bolder;
+    color: #05386B;
+
+}
+
+.header-menu{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.header-menu-element{
+    color: #EDF5E1;
+    font-size: 48px;
+    font-weight: bold;
+    margin-left: 30px;
+    transition: color .2s;
+}
+
+.header-menu-element:hover{
+    color: #05386B;
+}
+
+.avatar{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}

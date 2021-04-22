@@ -1,0 +1,33 @@
+.sign-up-form{
+    border-radius: 40px;
+    background-color: #379683;
+    padding: 40px 60px;
+}
+
+.sign-up-form-input{
+    border-radius: 10px;
+    background-color: #05386B;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #EDF5E1;
+    margin: 10px;
+}
+
+.sign-up-form-button{
+    border-radius: 100px;
+    background-color: #05386B;
+    padding: 10px 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #EDF5E1;
+    margin: 10px;
+}
+
+.sign-up-form-title{
+    font-weight: bold;
+    color: #EDF5E1;
+}
+
+
+
