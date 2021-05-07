@@ -9,11 +9,11 @@ import ru.itis.antonov.imagination.dto.form.SignUpForm;
 public class SignUpController {
     @GetMapping("/signUp")
     public String getView(){
-        return "sign_up";
+        return "signUp";
     }
 
     @PostMapping("/signUp")
     public String signUp(SignUpForm form){
-        return "sign_up";
+        return "signUp";
     }
 }
