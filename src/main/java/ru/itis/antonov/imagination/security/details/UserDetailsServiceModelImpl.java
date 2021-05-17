@@ -8,19 +8,19 @@ import org.springframework.stereotype.Component;
 import ru.itis.antonov.imagination.models.User;
 import ru.itis.antonov.imagination.repositories.UserRepository;
 
-@Component(value = "customUserDetailsService")
-public class UserDetailsServiceImpl implements UserDetailsService {
+@Component(value = "modelUserDetailsService")
+public class UserDetailsServiceModelImpl implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserDetailsServiceImpl(UserRepository userRepository) {
+    public UserDetailsServiceModelImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = userRepository.findUserByEmail(s).orElseThrow(()->new UsernameNotFoundException(s + " not found"));
-        return new UserDetailsImpl(user);
+        return new UserDetailsModelImpl(user);
     }
 }

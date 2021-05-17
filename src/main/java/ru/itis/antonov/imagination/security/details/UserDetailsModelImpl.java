@@ -6,18 +6,13 @@ import ru.itis.antonov.imagination.models.User;
 
 import java.util.Collection;
 
-public class UserDetailsImpl implements UserDetails {
+public class UserDetailsModelImpl implements UserDetails {
 
-    private User user;
+    private final User user;
 
-    public UserDetailsImpl(User user) {
+    public UserDetailsModelImpl(User user) {
         this.user = user;
     }
-
-    public UserDetailsImpl() {
-    }
-
-    //TODO all
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -26,12 +21,12 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return user.getEmail();
     }
 
     @Override
@@ -41,7 +36,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return user.getState() != User.State.BANNED;
     }
 
     @Override
@@ -51,6 +46,10 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return user.getState() != User.State.BANNED;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

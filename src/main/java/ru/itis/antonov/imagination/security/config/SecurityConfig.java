@@ -22,12 +22,12 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
     @Autowired
-    public SecurityConfig(@Qualifier(value = "customUserDetailsService") UserDetailsService userDetailsService, DataSource dataSource) {
+    public SecurityConfig(@Qualifier(value = "modelUserDetailsService") UserDetailsService userDetailsService, DataSource dataSource) {
         this.userDetailsService = userDetailsService;
         this.dataSource = dataSource;
     }
@@ -57,6 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
         //TODO csrf
     }
+
+    //todo oauth
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

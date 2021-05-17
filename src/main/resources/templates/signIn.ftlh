@@ -9,19 +9,18 @@
     <@elements.header true/>
     <div class="default-body center-container">
         <div class="sign-up-form center-container">
-            <h1 class="sign-up-form-title"><@spring.message 'signUp.page.formTitle'/></h1>
+            <h1 class="sign-up-form-title"><@spring.message 'signIn.page.formTitle'/></h1>
             <form class="center-container" action="/signIn" method="get">
                 <input class="sign-up-form-input" type="email" name="email"
-                       placeholder="<@spring.message 'signUp.page.emailPlaceholder'/>">
-                <input class="sign-up-form-input" name="nickname"
-                       placeholder="<@spring.message 'signUp.page.nicknamePlaceholder'/>">
+                       placeholder="<@spring.message 'signIn.page.emailPlaceholder'/>">
                 <input class="sign-up-form-input" name="password" type="password"
-                       placeholder="<@spring.message 'signUp.page.passwordPlaceholder'/>">
-                <input class="sign-up-form-input" name="passwordRepeat" type="password"
-                       placeholder="<@spring.message 'signUp.page.passwordRepeatPlaceholder'/>">
+                       placeholder="<@spring.message 'signIn.page.passwordPlaceholder'/>">
+                <input class="sign-up-form-input" name="remember-me" type="checkbox"
+                       placeholder="<@spring.message 'signIn.page.RememberMePlaceholder'/>">
                 <input class="sign-up-form-button" type="submit"
-                       value="<@spring.message 'signUp.page.submit'/>">
-                <a href="/signIn"><@spring.message 'signUp.page.alreadyHaveAccount'/></a>
+                       value="<@spring.message 'signIn.page.submit'/>">
+                <a href="/signIn"><@spring.message 'signIn.page.haventAccount'/></a>
+
             </form>
         </div>
     </div>

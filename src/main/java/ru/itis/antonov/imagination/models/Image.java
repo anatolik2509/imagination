@@ -12,4 +12,5 @@ public class Image {
     private String storagePath;
     @ManyToOne
     private Image parent;
+    //todo likes and dislikes
 }
