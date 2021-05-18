@@ -3,6 +3,7 @@ package ru.itis.antonov.imagination.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ import ru.itis.antonov.imagination.services.interfaces.UserService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Controller
 public class SignUpController {
@@ -28,14 +31,18 @@ public class SignUpController {
     }
 
     @GetMapping("/signUp")
-    public String getView(){
+    public String getView(Model model){
+        model.addAttribute("form",
+                SignUpForm.builder().email("").password("").passwordRepeat("").nickname("").build());
         return "signUp";
     }
 
     @PostMapping("/signUp")
     public String signUp(@Valid SignUpForm form, BindingResult result, Model model, HttpServletRequest request){
         if(result.hasErrors()){
+            System.out.println(result.getAllErrors().get(0).shouldRenderDefaultMessage());
             model.addAttribute("errorList", result.getAllErrors());
+            model.addAttribute("form", form);
             return "signUp";
         }
         try {
@@ -43,6 +50,7 @@ public class SignUpController {
         }
         catch (OccupiedEmailException e){
             model.addAttribute("emailError", true);
+            model.addAttribute("form", form);
             return "signUp";
         }
         try {

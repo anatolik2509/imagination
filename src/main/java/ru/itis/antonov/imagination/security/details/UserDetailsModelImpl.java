@@ -14,6 +14,10 @@ public class UserDetailsModelImpl implements UserDetails {
         this.user = user;
     }
 
+    public UserDetailsModelImpl(){
+        this.user = User.builder().email("").password("").state(User.State.NORMAL).build();
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

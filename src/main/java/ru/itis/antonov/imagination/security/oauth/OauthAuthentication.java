@@ -3,6 +3,7 @@ package ru.itis.antonov.imagination.security.oauth;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.itis.antonov.imagination.security.details.UserDetailsModelImpl;
 
 import java.util.Collection;
 
@@ -13,6 +14,7 @@ public class OauthAuthentication implements Authentication {
     private UserDetails userDetails;
 
     public OauthAuthentication(String oauthToken) {
+        this.userDetails = new UserDetailsModelImpl();
         this.oauthToken = oauthToken;
         authenticated = false;
     }

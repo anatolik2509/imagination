@@ -7,7 +7,7 @@
 <@pageTemplate.htmlTemplate title>
     <body class="main-color-bg">
     <@elements.header true/>
-    <div class="default-body center-container">
+    <div class="default-body container-sm center-container">
         <div class="sign-up-form center-container">
             <h1 class="sign-up-form-title"><@spring.message 'signUp.page.formTitle'/></h1>
             <form class="center-container" action="/signUp" method="post">
@@ -23,7 +23,7 @@
                        value="<@spring.message 'signUp.page.submit'/>">
                 <#if errorList??>
                     <#list errorList as error>
-                        ${error}
+                        <p class="error">${error.getDefaultMessage()}</p>
                     </#list>
                 </#if>
                 <a href="/signIn"><@spring.message 'signUp.page.alreadyHaveAccount'/></a>
