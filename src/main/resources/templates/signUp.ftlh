@@ -21,6 +21,11 @@
                        placeholder="<@spring.message 'signUp.page.passwordRepeatPlaceholder'/>">
                 <input class="sign-up-form-button" type="submit"
                        value="<@spring.message 'signUp.page.submit'/>">
+                <#if errorList??>
+                    <#list errorList as error>
+                        ${error}
+                    </#list>
+                </#if>
                 <a href="/signIn"><@spring.message 'signUp.page.alreadyHaveAccount'/></a>
             </form>
         </div>

@@ -14,6 +14,8 @@ import ru.itis.antonov.imagination.exception.OccupiedEmailException;
 import ru.itis.antonov.imagination.repositories.UserRepository;
 import ru.itis.antonov.imagination.services.interfaces.UserService;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -31,7 +33,7 @@ public class SignUpController {
     }
 
     @PostMapping("/signUp")
-    public String signUp(@Valid SignUpForm form, BindingResult result, Model model){
+    public String signUp(@Valid SignUpForm form, BindingResult result, Model model, HttpServletRequest request){
         if(result.hasErrors()){
             model.addAttribute("errorList", result.getAllErrors());
             return "signUp";
@@ -43,7 +45,11 @@ public class SignUpController {
             model.addAttribute("emailError", true);
             return "signUp";
         }
-        //todo authentication on sign up
-        return "signUp";
+        try {
+            request.login(form.getEmail(), form.getPassword());
+        } catch (ServletException e) {
+            throw new IllegalArgumentException(e);
+        }
+        return "redirect:/profile";
     }
 }

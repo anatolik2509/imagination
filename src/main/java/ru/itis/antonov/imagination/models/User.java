@@ -49,22 +49,27 @@ public class User {
     private List<User> subscribers;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "likes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user", "image"})})
+    @JoinTable(name = "likes",
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"account", "image"})},
+            joinColumns = {@JoinColumn(name = "account")},
+            inverseJoinColumns = {@JoinColumn(name = "image")})
     private List<Image> liked;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "dislikes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user", "image"})})
+    @JoinTable(name = "dislikes",
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"account", "image"})},
+            joinColumns = {@JoinColumn(name = "account")},
+            inverseJoinColumns = {@JoinColumn(name = "image")})
     private List<Image> disliked;
 
 
-
-    public enum State{
+    public enum State {
         NORMAL,
         BANNED,
         DELETED
     }
 
-    public enum Role{
+    public enum Role {
         USER, MODERATOR, ADMIN
     }
 }
