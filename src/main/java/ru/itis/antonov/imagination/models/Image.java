@@ -1,6 +1,7 @@
 package ru.itis.antonov.imagination.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Image {
@@ -12,5 +13,12 @@ public class Image {
     private String storagePath;
     @ManyToOne
     private Image parent;
-    //todo likes and dislikes
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "likes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user", "image"})})
+    private List<User> likes;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "dislikes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user", "image"})})
+    private List<User> dislikes;
 }

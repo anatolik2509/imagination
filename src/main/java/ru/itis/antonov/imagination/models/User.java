@@ -48,6 +48,15 @@ public class User {
             uniqueConstraints = {@UniqueConstraint(columnNames = {"user_from", "user_to"})})
     private List<User> subscribers;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "likes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user", "image"})})
+    private List<Image> liked;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "dislikes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user", "image"})})
+    private List<Image> disliked;
+
+
 
     public enum State{
         NORMAL,
