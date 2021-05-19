@@ -20,8 +20,8 @@ public class SignUpForm {
     @Email(message = "{signUp.valid.emailError}")
     private String email;
     private String nickname;
-    @Length(min = 8, message = "{signUp.valid.passwordLengthError}")
-    @HasLetters(message = "{signUp.valid.hasLettersError}")
+    @Length(min = 8, message = "{signUp.valid.shortPassword}")
+    @HasLetters(message = "{signUp.valid.hasLetterError}")
     @HasNumber(message = "{signUp.valid.hasNumberError}")
     private String password;
     private String passwordRepeat;

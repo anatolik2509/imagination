@@ -3,6 +3,7 @@ package ru.itis.antonov.imagination.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class SignInController {
@@ -16,4 +17,5 @@ public class SignInController {
         model.addAttribute("error", true);
         return "signIn";
     }
+
 }

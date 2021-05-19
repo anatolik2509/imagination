@@ -7,7 +7,9 @@
 <@pageTemplate.htmlTemplate title>
     <body class="main-color-bg">
     <@elements.header true/>
-    ${account.email}
-    <a href="/logout">Logout</a>
+    <div class="default-body">
+        ${account.email}
+        <a href="/logout">Logout</a>
+    </div>
     </body>
 </@pageTemplate.htmlTemplate>

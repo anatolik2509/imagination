@@ -1,9 +1,18 @@
 package ru.itis.antonov.imagination.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +22,9 @@ public class Image {
     private String storagePath;
     @ManyToOne
     private Image parent;
+
+    @ManyToOne
+    private Group group;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "likes", uniqueConstraints = {@UniqueConstraint(columnNames = {"account", "image"})},

@@ -19,9 +19,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
-@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -38,7 +37,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()
+        http.csrf().disable();
+        http.authorizeRequests()
+                .antMatchers("/static").permitAll()
+                .antMatchers("/signIn").permitAll()
+                .antMatchers("/signUp").permitAll()
+                .antMatchers("/profile").authenticated()
+                .and()
+                .formLogin()
+                .loginProcessingUrl("/signIn")
                 .loginPage("/signIn")
                 .usernameParameter("email")
                 .passwordParameter("password")
@@ -52,13 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe()
                 .rememberMeParameter("remember-me")
-                .tokenRepository(persistentTokenRepository())
-                .and()
-                .authorizeRequests()
-                .antMatchers("/static")
-                .permitAll()
-                .and()
-                .csrf().disable();
+                .tokenRepository(persistentTokenRepository());
         //TODO csrf
     }
 
@@ -77,8 +78,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
 }

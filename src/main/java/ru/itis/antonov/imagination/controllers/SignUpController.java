@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +29,10 @@ import java.util.stream.Collectors;
 public class SignUpController {
 
     private final UserService userService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
 
     public SignUpController(UserService userService) {
         this.userService = userService;
@@ -47,17 +55,17 @@ public class SignUpController {
         }
         try {
             userService.addUser(form);
+            request.login(form.getEmail(), form.getPassword());
         }
         catch (OccupiedEmailException e){
             model.addAttribute("emailError", true);
             model.addAttribute("form", form);
             return "signUp";
         }
-        try {
-            request.login(form.getEmail(), form.getPassword());
-        } catch (ServletException e) {
-            throw new IllegalArgumentException(e);
+        catch (ServletException e){
+            return "redirect:/signIn";
         }
         return "redirect:/profile";
     }
+
 }
