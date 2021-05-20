@@ -1,4 +1,5 @@
 package ru.itis.antonov.imagination.services.interfaces;
 
-public interface GroupService {
+public interface MediaService {
+    //todo uploading
 }

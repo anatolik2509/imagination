@@ -23,9 +23,6 @@ public class Image {
     @ManyToOne
     private Image parent;
 
-    @ManyToOne
-    private Group group;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "likes", uniqueConstraints = {@UniqueConstraint(columnNames = {"account", "image"})},
             joinColumns = {@JoinColumn(name = "image")},

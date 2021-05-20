@@ -1,9 +1,5 @@
 package ru.itis.antonov.imagination.services.implementations;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.itis.antonov.imagination.dto.UserDto;
@@ -39,7 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(SignUpForm form) throws OccupiedEmailException{
+    public UserDto registerUser(SignUpForm form) throws OccupiedEmailException{
         if(userRepository.findUserByEmail(form.getEmail()).isPresent()){
             throw new OccupiedEmailException(form.getEmail() + " is occupied");
         }
@@ -51,6 +47,7 @@ public class UserServiceImpl implements UserService {
                 .state(User.State.NORMAL)
                 .build();
         userRepository.save(newUser);
+        return UserDto.from(newUser);
     }
 
     @Override

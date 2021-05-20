@@ -13,13 +13,23 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Group {
+public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne
+    private User owner;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Image> images;
+
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Image> images;
+    @Enumerated(EnumType.STRING)
+    private AlbumAccess access;
+
+    private enum AlbumAccess{
+        PUBLIC, PRIVATE
+    }
 }

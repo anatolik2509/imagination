@@ -9,7 +9,7 @@ public interface UserService {
 
     UserDto getUserByEmail(String email);
 
-    void addUser(SignUpForm form);
+    UserDto registerUser(SignUpForm form);
 
     UserDto updateUser(UserUpdateForm form, Long id);
 

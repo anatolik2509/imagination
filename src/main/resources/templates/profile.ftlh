@@ -9,7 +9,10 @@
     <@elements.header true/>
     <div class="default-body">
         ${account.email}
-        <a href="/logout">Logout</a>
+        <#if owner??>
+            <a href="/profile/edit">Edit</a>
+            <a href="/logout">Logout</a>
+        </#if>
     </div>
     </body>
 </@pageTemplate.htmlTemplate>
