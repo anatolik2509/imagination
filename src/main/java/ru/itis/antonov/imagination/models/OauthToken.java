@@ -17,7 +17,7 @@ public class OauthToken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String token;
+    private String value;
 
     @ManyToOne
     private User user;

@@ -20,8 +20,6 @@ public class AuthenticatedInterceptor implements HandlerInterceptor {
             modelAndView.addObject("authenticated", a != null &&
                     a.isAuthenticated()
                     && !a.getPrincipal().equals("anonymousUser"));
-            System.out.println(SecurityContextHolder.getContext().getAuthentication() != null &&
-                    SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
 
         }
     }

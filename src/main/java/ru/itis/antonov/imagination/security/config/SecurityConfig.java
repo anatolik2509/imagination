@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import ru.itis.antonov.imagination.security.oauth.OauthAuthenticationProvider;
 
 import javax.sql.DataSource;
 
@@ -39,10 +40,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/static").permitAll()
+
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/js/**").permitAll()
                 .antMatchers("/signIn").permitAll()
                 .antMatchers("/signUp").permitAll()
-                .antMatchers("/profile").authenticated()
+                .antMatchers("/oauth").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/signIn")
@@ -60,14 +64,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .rememberMe()
                 .rememberMeParameter("remember-me")
                 .tokenRepository(persistentTokenRepository());
-        //TODO csrf
     }
 
-    //todo oauth
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.authenticationProvider(oauthAuthenticationProvider);
     }
 
     @Bean
@@ -76,6 +79,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         jdbcTokenRepository.setDataSource(dataSource);
         return jdbcTokenRepository;
     }
+
+    @Autowired
+    private OauthAuthenticationProvider oauthAuthenticationProvider;
 
     @Bean
     public PasswordEncoder passwordEncoder() {

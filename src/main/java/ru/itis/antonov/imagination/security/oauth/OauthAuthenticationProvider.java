@@ -23,7 +23,7 @@ public class OauthAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         OauthAuthentication oauthAuthentication = (OauthAuthentication) authentication;
-        OauthToken token = oauthTokenRepository.getOauthTokenByToken((String) oauthAuthentication.getCredentials())
+        OauthToken token = oauthTokenRepository.getOauthTokenByValue((String) oauthAuthentication.getCredentials())
                 .orElseThrow(() -> new BadCredentialsException("Token not found: " + oauthAuthentication.getCredentials()));
         oauthAuthentication.setUserDetails(new UserDetailsModelImpl(token.getUser()));
         oauthAuthentication.setAuthenticated(true);

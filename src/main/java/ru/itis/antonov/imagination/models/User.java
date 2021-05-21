@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -30,6 +31,8 @@ public class User implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    private LocalDate birthDate;
 
 
     @OneToMany(mappedBy = "author")
@@ -62,6 +65,9 @@ public class User implements Serializable {
             joinColumns = {@JoinColumn(name = "account")},
             inverseJoinColumns = {@JoinColumn(name = "image")})
     private List<Image> disliked;
+
+    @OneToMany
+    private List<Album> albums;
 
 
     public enum State {

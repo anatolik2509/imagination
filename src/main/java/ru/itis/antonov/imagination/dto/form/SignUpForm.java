@@ -10,6 +10,7 @@ import ru.itis.antonov.imagination.validation.HasLetters;
 import ru.itis.antonov.imagination.validation.HasNumber;
 
 import javax.validation.constraints.Email;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -25,4 +26,5 @@ public class SignUpForm {
     @HasNumber(message = "{signUp.valid.hasNumberError}")
     private String password;
     private String passwordRepeat;
+    private LocalDate birthDate;
 }

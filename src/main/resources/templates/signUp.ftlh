@@ -21,6 +21,10 @@
                        placeholder="<@spring.message 'signUp.page.passwordPlaceholder'/>">
                 <input class="sign-up-form-input" name="passwordRepeat" type="password"
                        placeholder="<@spring.message 'signUp.page.passwordRepeatPlaceholder'/>">
+                <label>
+                    <p class="form-label"><@spring.message 'signUp.page.birthDate'/></p>
+                </label>
+                <input type="date" name="birthDate" class="sign-up-form-input">
                 <input class="sign-up-form-button" type="submit"
                        value="<@spring.message 'signUp.page.submit'/>">
                 <#if errorList??>

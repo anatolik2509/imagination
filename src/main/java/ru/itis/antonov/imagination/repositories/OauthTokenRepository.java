@@ -6,5 +6,5 @@ import ru.itis.antonov.imagination.models.OauthToken;
 import java.util.Optional;
 
 public interface OauthTokenRepository extends JpaRepository<OauthToken, Long> {
-    Optional<OauthToken> getOauthTokenByToken(String token);
+    Optional<OauthToken> getOauthTokenByValue(String value);
 }

@@ -17,7 +17,7 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User author;
     private String storagePath;
     @ManyToOne
@@ -34,4 +34,7 @@ public class Image {
             joinColumns = {@JoinColumn(name = "image")},
             inverseJoinColumns = {@JoinColumn(name = "account")})
     private List<User> dislikes;
+
+    @OneToMany
+    private List<Comment> comments;
 }

@@ -1,10 +1,12 @@
 package ru.itis.antonov.imagination.security.details;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.itis.antonov.imagination.models.User;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public class UserDetailsModelImpl implements UserDetails {
 
@@ -20,7 +22,9 @@ public class UserDetailsModelImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().toString());
+        return Collections.singleton(authority);
+
     }
 
     @Override

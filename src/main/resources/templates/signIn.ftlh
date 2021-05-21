@@ -24,6 +24,9 @@
                     <p><@spring.message 'signIn.error.incorrectInputs'/></p>
                 </#if>
                 <a href="/signUp"><@spring.message 'signUp.page.alreadyHaveAccount'/></a>
+                <a href="https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Foauth">
+                    Sign In GitHub
+                </a>
             </form>
         </div>
     </div>

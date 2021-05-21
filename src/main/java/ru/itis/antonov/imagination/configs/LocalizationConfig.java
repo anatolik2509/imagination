@@ -1,5 +1,6 @@
 package ru.itis.antonov.imagination.configs;
 
+import okhttp3.OkHttpClient;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +35,11 @@ public class LocalizationConfig implements WebMvcConfigurer {
         LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
         bean.setValidationMessageSource(messageSource);
         return bean;
+    }
+
+    @Bean
+    public OkHttpClient client(){
+        return new OkHttpClient();
     }
 
     @Bean
