@@ -13,10 +13,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import ru.itis.antonov.imagination.security.oauth.OauthAuthenticationProvider;
+import ru.itis.antonov.imagination.security.oauth.OauthFilter;
 
 import javax.sql.DataSource;
 
@@ -63,7 +65,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe()
                 .rememberMeParameter("remember-me")
-                .tokenRepository(persistentTokenRepository());
+                .tokenRepository(persistentTokenRepository())
+                .and()
+                .addFilterAt(oauthFilter(), UsernamePasswordAuthenticationFilter.class)
+
+        ;
     }
 
 
@@ -82,6 +88,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private OauthAuthenticationProvider oauthAuthenticationProvider;
+
+    @Bean
+    public OauthFilter oauthFilter(){
+        return new OauthFilter();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
