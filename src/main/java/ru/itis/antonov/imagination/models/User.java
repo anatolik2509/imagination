@@ -66,7 +66,7 @@ public class User implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "image")})
     private List<Image> disliked;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner")
     private List<Album> albums;
 
 

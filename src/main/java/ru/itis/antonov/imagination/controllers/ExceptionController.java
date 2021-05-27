@@ -11,8 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class ExceptionController {
     @ExceptionHandler(WebApplicationException.class)
-    public void postException(WebApplicationException e, HttpServletResponse response){
+    public void postWebException(WebApplicationException e, HttpServletResponse response){
         response.setStatus(e.getStatus());
+        log.error(e.toString());
         log.error(e.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String postException(HttpServletResponse response){
+        response.setStatus(500);
+        return "somethingWrong";
     }
 }

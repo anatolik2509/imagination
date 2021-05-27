@@ -28,5 +28,14 @@
     padding-top: 120px;
 }
 
+.image-container{
+    max-width: 100%;
+}
+
+.image{
+    object-fit: cover;
+    width: 100%;
+}
+
 
 

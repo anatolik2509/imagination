@@ -6,7 +6,7 @@
 </#assign>
 <@pageTemplate.htmlTemplate title>
     <body>
-    <@elements.header true/>
+    <@elements.header authenticated/>
     <div class="default-body container center-container">
         <@elements.image image false/>
         <#list image.comments as comment>

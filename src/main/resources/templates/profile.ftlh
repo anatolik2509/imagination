@@ -6,12 +6,13 @@
 </#assign>
 <@pageTemplate.htmlTemplate title>
     <body>
-    <@elements.header true/>
+    <@elements.header authenticated/>
     <script src="/js/ProfileButtonsConfigurer.js"></script>
     <div class="default-body container center-container">
         <h2>${account.nickname}</h2>
         <p>${account.email}</p>
         <#if account.viewerOwner>
+            <a class="btn btn-success" href="/albums"></a>
             <a class="btn btn-primary" href="/profile/edit">Edit</a>
             <a class="btn btn-danger" href="/logout">Logout</a>
         <#elseif account.viewerAdmin>

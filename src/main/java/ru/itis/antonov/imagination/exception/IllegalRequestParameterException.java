@@ -4,8 +4,10 @@ public class IllegalRequestParameterException extends WebApplicationException{
 
     public static final int DEFAULT_STATUS = 422;
 
+    public static final String DEFAULT_MESSAGE = "";
+
     public IllegalRequestParameterException() {
-        super(DEFAULT_STATUS);
+        super(DEFAULT_MESSAGE, DEFAULT_STATUS);
     }
 
     public IllegalRequestParameterException(String message) {

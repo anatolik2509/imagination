@@ -6,7 +6,8 @@
 </#assign>
 <@pageTemplate.htmlTemplate title>
     <body>
-    <@elements.header true/>
+    <@elements.header authenticated/>
+    <script src="/js/PostsLoader.js"></script>
     <script src="/js/PostsLoader.js"></script>
     <div id="image-list" class="default-body container center-container">
 

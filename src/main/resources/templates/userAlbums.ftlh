@@ -8,9 +8,12 @@
     <body>
     <@elements.header authenticated/>
     <div id="image-list" class="default-body container center-container">
-
-        <#list images as image>
-            <@elements.image image false/>
+        <form action="/album/create" method="post">
+            <input name="albumName" placeholder="name">
+            <input type="submit" class="btn btn-success" value="Add">
+        </form>
+        <#list albums as album>
+            <a href="/album/${album.id}">${album.name}</a>
         </#list>
     </div>
     </body>

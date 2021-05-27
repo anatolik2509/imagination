@@ -25,14 +25,31 @@ public class AlbumController {
         return "albumView";
     }
 
+    @GetMapping("/albums")
+    public String getUserAlbums(@AuthenticationPrincipal UserDetailsModelImpl userDetails,
+                                Model model){
+        model.addAttribute("albums", albumService.getUserAlbums(userDetails.getUser().getId()));
+        return "userAlbums";
+    }
+
     @PostMapping("/album/create")
     public String createAlbum(@AuthenticationPrincipal UserDetailsModelImpl userDetails, @RequestParam String albumName){
         AlbumDto albumDto = albumService.createAlbum(userDetails.getUser().getId(), albumName);
         return "redirect:/album/" + albumDto.getId();
     }
 
+    @GetMapping("/album/add")
+    public String addImageView(@AuthenticationPrincipal UserDetailsModelImpl userDetails,
+                               @RequestParam Long imageId, Model model){
+        model.addAttribute("imageId", imageId);
+        model.addAttribute("albums", albumService.getUserAlbums(userDetails.getUser().getId()));
+        return "addToAlbumView";
+    }
+
     @PostMapping("/album/add")
-    public String createAlbum(@AuthenticationPrincipal UserDetailsModelImpl userDetails, @RequestParam Long albumId, @RequestParam Long imageId){
+    public String addImage(@AuthenticationPrincipal UserDetailsModelImpl userDetails,
+                           @RequestParam Long albumId,
+                           @RequestParam Long imageId){
         albumService.addImageToAlbum(imageId, albumId);
         return "redirect:/album/" + albumId;
     }

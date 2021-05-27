@@ -20,7 +20,7 @@ public class Comment {
     @ManyToOne
     private User author;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Image image;
 
     private String content;

@@ -29,6 +29,5 @@ public class ImageController {
     public void delete(@PathVariable Long id, @AuthenticationPrincipal UserDetailsModelImpl userDetails, HttpServletResponse response){
         imageService.delete(id, userDetails.getUser().getId());
         response.setStatus(200);
-
     }
 }

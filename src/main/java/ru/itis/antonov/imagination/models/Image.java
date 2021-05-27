@@ -20,8 +20,11 @@ public class Image {
     @ManyToOne
     private User author;
     private String storagePath;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Image parent;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "parent")
+    private List<Image> child;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "likes", uniqueConstraints = {@UniqueConstraint(columnNames = {"account", "image"})},
@@ -35,6 +38,6 @@ public class Image {
             inverseJoinColumns = {@JoinColumn(name = "account")})
     private List<User> dislikes;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "image", orphanRemoval = true)
     private List<Comment> comments;
 }

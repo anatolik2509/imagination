@@ -6,12 +6,6 @@
 </#assign>
 <@pageTemplate.htmlTemplate title>
     <body>
-    <@elements.header authenticated/>
-    <div id="image-list" class="default-body container center-container">
-
-        <#list images as image>
-            <@elements.image image false/>
-        </#list>
-    </div>
+    <h1>Something went wrong! Please, try later!</h1>
     </body>
 </@pageTemplate.htmlTemplate>

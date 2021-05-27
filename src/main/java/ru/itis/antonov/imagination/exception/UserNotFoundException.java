@@ -4,8 +4,10 @@ public class UserNotFoundException extends WebApplicationException{
 
     public static final int DEFAULT_STATUS = 404;
 
+    public static final String DEFAULT_MESSAGE = "";
+
     public UserNotFoundException() {
-        super(DEFAULT_STATUS);
+        super(DEFAULT_MESSAGE, DEFAULT_STATUS);
     }
 
     public UserNotFoundException(String message) {

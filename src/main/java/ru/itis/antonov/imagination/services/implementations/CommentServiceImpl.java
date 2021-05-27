@@ -6,6 +6,7 @@ import ru.itis.antonov.imagination.dto.form.CommentForm;
 import ru.itis.antonov.imagination.exception.NoSuchImageException;
 import ru.itis.antonov.imagination.exception.NoSuchUserException;
 import ru.itis.antonov.imagination.models.Comment;
+import ru.itis.antonov.imagination.models.Image;
 import ru.itis.antonov.imagination.repositories.CommentRepository;
 import ru.itis.antonov.imagination.repositories.ImageRepository;
 import ru.itis.antonov.imagination.repositories.UserRepository;
@@ -24,10 +25,11 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void addComment(CommentForm form, Long userId, Long imageId) {
+        Image image = imageRepository.findById(imageId).orElseThrow(NoSuchImageException::new);
         Comment comment = Comment.builder()
                 .author(userRepository.findById(userId).orElseThrow(NoSuchUserException::new))
                 .content(form.getContent())
-                .image(imageRepository.findById(imageId).orElseThrow(NoSuchImageException::new))
+                .image(image)
                 .build();
         commentRepository.save(comment);
     }
@@ -41,4 +43,5 @@ public class CommentServiceImpl implements CommentService {
     public void setImageRepository(ImageRepository imageRepository) {
         this.imageRepository = imageRepository;
     }
+
 }

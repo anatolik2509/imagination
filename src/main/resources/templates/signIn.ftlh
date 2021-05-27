@@ -6,7 +6,7 @@
 </#assign>
 <@pageTemplate.htmlTemplate title>
     <body class="main-color-bg">
-    <@elements.header true/>
+    <@elements.header authenticated/>
     <div class="default-body container-sm center-container">
         <div class="sign-up-form center-container">
             <h1 class="sign-up-form-title"><@spring.message 'signIn.page.formTitle'/></h1>

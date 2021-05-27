@@ -4,8 +4,11 @@ public class OccupiedEmailException extends WebApplicationException{
 
     public static final int DEFAULT_STATUS = 409;
 
+    public static final String DEFAULT_MESSAGE = "";
+
+
     public OccupiedEmailException() {
-        super(DEFAULT_STATUS);
+        super(DEFAULT_MESSAGE, DEFAULT_STATUS);
     }
 
     public OccupiedEmailException(String message) {

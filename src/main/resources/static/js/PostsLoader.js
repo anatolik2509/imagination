@@ -6,7 +6,7 @@ let requestSend = true;
 function request() {
     if(document.body.scrollHeight - window.pageYOffset - document.body.clientHeight < loadBorder && requestSend){
         requestSend = false;
-        $.ajax({url:"/feed?limit=" + articlesToLoad + "&offset=" + articleAmount + "&updated=",
+        $.ajax({url:"/feed?limit=" + articlesToLoad + "&offset=" + articleAmount,
             success:function (msg) {
                 requestSend = true;
                 $("#image-list").append(msg);

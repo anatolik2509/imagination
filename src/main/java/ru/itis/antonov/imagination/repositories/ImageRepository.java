@@ -9,7 +9,7 @@ import java.util.List;
 public interface ImageRepository extends JpaRepository<Image, Long> {
     @Query(nativeQuery = true,
             value = "SELECT * FROM image INNER JOIN account a on image.author_id = a.id" +
-            " INNER JOIN subscribes s on a.id = s.user_to WHERE s.user_from = ?1" +
+            " LEFT JOIN subscribes s on a.id = s.user_to WHERE s.user_from = ?1 OR image.author_id=?1" +
             " LIMIT ?2 OFFSET ?3")
     List<Image> getFeed(Long userId, int limit, int offset);
 
